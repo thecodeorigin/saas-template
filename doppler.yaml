@@ -1,0 +1,3 @@
+setup:
+  - project: saas-template
+    config: dev_personal

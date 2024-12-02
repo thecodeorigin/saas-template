@@ -1,0 +1,39 @@
+{
+  "name": "saas.template",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "with-env": "doppler run -- pnpm",
+    "dev": "jiti ./scripts/serve.ts",
+    "build": "jiti ./scripts/build.ts",
+    "lint": "eslint . --fix",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "prepare": "jiti ./scripts/prepare.ts",
+    "test": "vitest run",
+    "cleanup": "rimraf .nuxt .output dist node_modules areas",
+    "stripe:seed": "jiti ./scripts/generate-stripe.ts",
+    "i18n:extract": "vue-i18n-extract report --vueFiles \"./app/**/*.?(js|ts|vue)\" --languageFiles \"./app/assets/locale/*.?(json)\" --add",
+    "db:generate": "jiti ./scripts/db/generate.ts",
+    "db:migrate": "jiti ./scripts/db/migrate.ts",
+    "db:seed": "jiti ./server/db/seeds/index.seed.ts",
+    "db:clear": "rimraf ./docker/postgres",
+    "db:start": "docker compose up -d",
+    "db:stop": "docker-compose down",
+    "db:reset": "pnpm db:stop && pnpm db:clear && pnpm db:start --force-recreate",
+    "gettext:extract": "vue-gettext-extract",
+    "gettext:compile": "vue-gettext-compile"
+  },
+  "dependencies": {
+    "@thecodeorigin/nuxt": "^1.8.0"
+  },
+  "resolutions": {
+    "@tiptap/core": "^2",
+    "@types/video.js": "^7",
+    "h3": "^1.13.0",
+    "postcss": "^8",
+    "stylelint-order": "6.0.3"
+  }
+}

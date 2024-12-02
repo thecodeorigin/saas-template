@@ -1,0 +1,59 @@
+{
+  "_meta": {
+    "template_version": 0
+  },
+  "fixtures": [
+    {
+      "name": "saas_template_product",
+      "path": "/v1/products",
+      "method": "post",
+      "params": {
+        "name": "saas.template",
+        "description": "A SAAS Template with Nuxt 3.",
+        "metadata": {
+          "lookup_key": "${.env:STRIPE_PRODUCT_LOOKUP_KEY}"
+        }
+      }
+    },
+    {
+      "name": "saas_template_monthly_price_free",
+      "path": "/v1/prices",
+      "method": "post",
+      "params": {
+        "currency": "usd",
+        "product": "${saas_template_product:id}",
+        "unit_amount": 0,
+        "recurring": {
+          "interval": "month"
+        },
+        "tax_behavior": "exclusive",
+        "transfer_lookup_key": true,
+        "metadata": {
+          "marketing_features": "['5 Transcript daily', '60 Minutes Uploads', 'Lower Priority']",
+          "name": "Basic",
+          "projects_limit": 5
+        }
+      }
+    },
+    {
+      "name": "saas_template_monthly_price_basic",
+      "path": "/v1/prices",
+      "method": "post",
+      "params": {
+        "currency": "usd",
+        "product": "${saas_template_product:id}",
+        "unit_amount": 1000,
+        "recurring": {
+          "interval": "month"
+        },
+        "tax_behavior": "exclusive",
+        "transfer_lookup_key": true,
+        "metadata": {
+          "marketing_features": "['Unlimited Transcriptions', '10 Hours Uploads', 'All Features', 'Higher Priority']",
+          "name": "Premium",
+          "projects_limit": 100
+        }
+      }
+    }
+  ]
+}
