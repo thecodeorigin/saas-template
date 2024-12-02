@@ -86,6 +86,4 @@ export default defineNuxtConfig({
       ],
     },
   },
-
-  modules: ['@nuxtjs/mdc'],
 })
